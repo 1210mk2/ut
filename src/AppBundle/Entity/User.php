@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,6 +18,11 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Login", mappedBy="user")
+     */
+    protected $logins;
 
     /**
      * @ORM\Column(type="string", length=32)
@@ -71,15 +77,33 @@ class User extends BaseUser
     }
 
     /**
+     * @return mixed
+     */
+    public function getLogins()
+    {
+        return $this->logins;
+    }
+
+    /**
+     * @param mixed $logins
+     */
+    public function setLogins($logins)
+    {
+        $this->logins = $logins;
+    }
+
+    /**
      * @ORM\Column(type="datetime")
      * @var \DateTime|null
      */
     protected $registerdate;
 
+
+
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+        $this->logins = new ArrayCollection();
     }
 
     /**

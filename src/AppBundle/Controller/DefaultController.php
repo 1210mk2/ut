@@ -22,38 +22,38 @@ class DefaultController extends Controller
         ]);
     }
 
-     /**
-     * @Route("/register", name="register")
-     */
-    public function registerAction(Request $request, EntityManagerInterface $em) {
-
-        $user = new User();
-        $user->setFirstname('fn');
-        $user->setLastname('ln');
-        $user->setEmail('testem@email.ru');
-        $user->setCity('Москва');
-        $user->setCountry('Россия');
-
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-// $form->getData() holds the submitted values
-// но первоначальная переменная $task тоже была обновлена
-            $user = $form->getData();
-
-// ... . выполните действия, такие как сохранение задачи в базе данных
-// например, если User является сущностью Doctrine, сохраните его!
-//            $em->persist($task);
-//            $em->flush();
-
-//            return $this->redirectToRoute('reg_success');
-
-        }
-
-        return $this->render('default/register.html.twig', array(
-            'form' => $form->createView(),
-        ));
-
-    }
+//     /**
+//     * @Route("/register", name="register")
+//     */
+//    public function registerAction(Request $request, EntityManagerInterface $em) {
+//
+//        $user = new User();
+//        $user->setFirstname('fn');
+//        $user->setLastname('ln');
+//        $user->setEmail('testem@email.ru');
+//        $user->setCity('Москва');
+//        $user->setCountry('Россия');
+//
+//        $form = $this->createForm(UserType::class, $user);
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//// $form->getData() holds the submitted values
+//// но первоначальная переменная $task тоже была обновлена
+//            $user = $form->getData();
+//
+//// ... . выполните действия, такие как сохранение задачи в базе данных
+//// например, если User является сущностью Doctrine, сохраните его!
+////            $em->persist($task);
+////            $em->flush();
+//
+////            return $this->redirectToRoute('reg_success');
+//
+//        }
+//
+//        return $this->render('default/register.html.twig', array(
+//            'form' => $form->createView(),
+//        ));
+//
+//    }
 }
