@@ -58,7 +58,16 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
-# Swiftmailer Configuration
+        dql:
+            datetime_functions:
+                date: DoctrineExtensions\Query\Mysql\Date
+                day: DoctrineExtensions\Query\Mysql\Day
+                dayofyear: DoctrineExtensions\Query\Mysql\DayOfYear
+                month: DoctrineExtensions\Query\Mysql\Month
+                year: DoctrineExtensions\Query\Mysql\Year
+
+
+ # Swiftmailer Configuration
 swiftmailer:
     transport: '%mailer_transport%'
     host: '%mailer_host%'

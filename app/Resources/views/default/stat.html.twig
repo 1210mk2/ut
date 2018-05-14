@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                    <a href="{{ path('fos_user_security_logout') }}">
+                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                    </a>
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                {% endif %}
+            </div>
+
+
+            <a href="/register">Регистрация</a>
+
+            <ul>
+                <h1>Сколько пользователей в текущем месяце зарегистрировалось с группировкой по городам</h1>
+                <h3>{{ test1_month }}</h3>
+                {% for u in test1_users %}
+                    <li>{{ u.city }} - {{ u.cnt }}</li>
+                {% endfor %}
+            </ul>
+            <ul>
+                <h1>Количество уникальных посещений за неделю</h1>
+                {% for u in test2_users %}
+                    <li>{{ u.dateLogin|date("d M") }} - {{ u.cnt }}</li>
+                {% endfor %}
+            </ul>
+            <ul>
+                <h1>Список пользователей, посещавших портал за последние 7 дней, с разбивкой по дням</h1>
+                <i>не сделано</i>
+            </ul>
+            <ul>
+                <h1>Список пользователей, у которых день рождения в ближайшие 7 дней и за 3 дня до текущей</h1>
+                {% for u in test4_users %}
+                    <li>{{ u.firstname }} {{ u.lastname }} - {{ u.birthdate|date("d M Y") }}</li>
+                {% endfor %}
+            </ul>
+
+
+        </div>
+    </div>
+{% endblock %}
